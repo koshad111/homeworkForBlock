@@ -16,7 +16,7 @@ public class Main {
         char[] arr2 = {'e', 'n', 't', 'i', 't', 'y'};
         System.out.println(stringReverse(arr2));
         int[] arr3 = {-10, -4, -3, -1, 0, 2, 3, 5, 12};
-        System.out.println(Arrays.toString(squaresOrder(arr3)));
+        System.out.println(Arrays.toString(squaresOrderWithSecondArray(arr3)));
     }
 
     /**
@@ -102,6 +102,37 @@ public class Main {
             }
         }
         return arr;
+    }
+
+    /**
+     * Given an integer array nums sorted in non-decreasing order,
+     * return an array of the squares of each number sorted in non-decreasing order, using second array.
+     *
+     * Example 1:
+     *
+     * Input: nums = [-4,-1,0,3,10]
+     * Output: [0,1,9,16,100]
+     * Explanation: After squaring, the array becomes [16,1,0,9,100].
+     * After sorting, it becomes [0,1,9,16,100].
+     * @param arr
+     * @return
+     */
+    public static int[] squaresOrderWithSecondArray(int[] arr) {
+        int[] arr2 = new int[arr.length];
+        int left = arr.length - 1;
+        int right = 0;
+        int nextElement = arr.length - 1;
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (-(arr[right]) < arr[left]) {
+                arr2[nextElement] = arr[left] * arr[left];
+                left --;
+            } else {
+                arr2[nextElement] = arr[right] * arr[right];
+                right++;
+            }
+            nextElement--;
+        }
+        return arr2;
     }
 
     public static <T> void swap(T[] a, int i, int j) {
